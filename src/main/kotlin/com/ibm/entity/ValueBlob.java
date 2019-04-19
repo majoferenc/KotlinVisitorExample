@@ -4,24 +4,42 @@ import com.ibm.visitor.Visitor;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
-import java.util.Objects;
+import javax.persistence.*;
 
+@Entity
 public class ValueBlob implements Element {
-    private int nachrtId;
+    @Id
+    @GeneratedValue
+    private int valueBlobId;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Nachricht nachricht;
+
     private String name;
     private String attachmentValue;
+
+    public ValueBlob(){
+        //default
+    }
 
     public ValueBlob(String name) {
         this.name = name;
     }
 
-    public int getNachrtId() {
-        return nachrtId;
+    public int getValueBlobId() {
+        return valueBlobId;
     }
 
-    public void setNachrtId(int nachrtId) {
-        this.nachrtId = nachrtId;
+    public void setValueBlobId(int valueBlobId) {
+        this.valueBlobId = valueBlobId;
+    }
+
+    public Nachricht getNachricht() {
+        return nachricht;
+    }
+
+    public void setNachricht(Nachricht nachricht) {
+        this.nachricht = nachricht;
     }
 
     public void setName(String name) {
@@ -45,5 +63,4 @@ public class ValueBlob implements Element {
     public Object accept(@NotNull Visitor visitor) {
         return visitor.visit(this);
     }
-
 }

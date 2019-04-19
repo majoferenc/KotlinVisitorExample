@@ -2,8 +2,10 @@ package com.ibm.visitor
 
 import com.ibm.entity.Nachricht
 import com.ibm.entity.ValueBlob
+import org.springframework.stereotype.Component
 
-class ConcreteVisitorA : Visitor {
+@Component
+class LoggerVisitor : Visitor {
 
     override fun visit(nachricht: Nachricht): Any {
         println("Nachricht name: " + nachricht.name)
