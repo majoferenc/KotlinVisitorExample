@@ -5,6 +5,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 public class ValueBlob implements Element {
@@ -20,6 +21,12 @@ public class ValueBlob implements Element {
 
     public ValueBlob(){
         //default
+    }
+
+    @Nullable
+    @Override
+    public Object accept(@NotNull Visitor visitor) {
+        return visitor.visit(this);
     }
 
     public ValueBlob(String name) {
@@ -58,9 +65,19 @@ public class ValueBlob implements Element {
         return name;
     }
 
-    @Nullable
     @Override
-    public Object accept(@NotNull Visitor visitor) {
-        return visitor.visit(this);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ValueBlob valueBlob = (ValueBlob) o;
+        return valueBlobId == valueBlob.valueBlobId &&
+                Objects.equals(nachricht, valueBlob.nachricht) &&
+                Objects.equals(name, valueBlob.name) &&
+                Objects.equals(attachmentValue, valueBlob.attachmentValue);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(valueBlobId, nachricht, name, attachmentValue);
     }
 }

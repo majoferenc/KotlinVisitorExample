@@ -15,7 +15,6 @@ data class Nachricht(
 ) : Element, Serializable {
 
     constructor(name: String?) : this(){
-        this.nachrichtId = 1
         this.name = name
     }
 
