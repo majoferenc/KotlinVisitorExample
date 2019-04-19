@@ -23,7 +23,6 @@ class DemoApplication{
 
     @Bean
     fun databaseInitializer() = CommandLineRunner {
-        val visitorA = LoggerVisitor()
         val nachricht1 = Nachricht("HD123456")
         nachrichtRepository.save(nachricht1)
         val kba_attachment1 = ValueBlob("kba1.xml")

@@ -11,8 +11,6 @@ import org.springframework.stereotype.Component
 class CountOfAttachmentVisitor : Visitor {
 
     @Autowired
-    lateinit var nachrichtRepository: NachrichtRepository
-    @Autowired
     lateinit var valueBlobRepository: ValueBlobRepository
 
     override fun visit(valueBlob: ValueBlob): Int? {
